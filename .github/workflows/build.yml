@@ -20,6 +20,14 @@ jobs:
           flutter-version: '3.24.0'
           channel: 'stable'
 
+      - name: Enable Windows Desktop
+        working-directory: ./frontend
+        run: flutter config --enable-windows-desktop
+
+      - name: Create Windows platform files
+        working-directory: ./frontend
+        run: flutter create --platforms=windows .
+
       - name: Install dependencies
         working-directory: ./frontend
         run: flutter pub get
@@ -29,7 +37,7 @@ jobs:
         run: flutter build windows --release
 
       - name: Upload Windows Build
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: windows-build
           path: frontend/build/windows/x64/runner/Release/
@@ -61,7 +69,7 @@ jobs:
         run: flutter build apk --release
 
       - name: Upload APK
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: android-apk
           path: frontend/build/app/outputs/flutter-apk/app-release.apk
