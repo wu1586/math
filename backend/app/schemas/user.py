@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel
 from typing import Optional
 from datetime import datetime
 
@@ -6,7 +6,7 @@ from datetime import datetime
 class UserBase(BaseModel):
     """用户基础模式"""
     username: str
-    email: EmailStr
+    email: str
 
 
 class UserCreate(UserBase):

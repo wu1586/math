@@ -3,6 +3,7 @@ import '../services/auth_service.dart';
 import '../services/model_service.dart';
 import '../models/model.dart';
 import 'login_screen.dart';
+import 'model_list_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   final AuthService authService;
@@ -163,10 +164,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                 elevation: 2,
                                 child: InkWell(
                                   onTap: () {
-                                    // TODO: 导航到模型列表页面
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text('点击了 ${category.name}'),
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) => ModelListScreen(
+                                          category: category,
+                                          modelService: widget.modelService,
+                                        ),
                                       ),
                                     );
                                   },
